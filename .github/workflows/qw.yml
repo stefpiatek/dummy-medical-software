@@ -9,7 +9,7 @@ on:
       - "**.md"
 
 jobs:
-  tests:
+  qw:
     runs-on: ubuntu-latest
     strategy:
       matrix:
