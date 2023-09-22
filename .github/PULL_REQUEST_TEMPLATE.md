@@ -12,7 +12,7 @@
 -->
 - [ ] Tagged with the qw design version number
 <!-- 
-  Should be match the version of the design requirement targetted, most often `qw-v1`
+  Should match the version of the design requirement targeted, most often `qw-v1`
 -->
 - [ ] Assigned PR to those who contributed to the work
 - [ ] Appropriate reviewers added to PR
