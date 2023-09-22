@@ -1,0 +1,21 @@
+name: Design input
+description: Create a new design input
+labels: ["qw-design-input", "qw-v1"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Let's add a new design input to the project
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the design input
+      placeholder: Specific requirement information
+    validations:
+      required: true
+  - type: textarea
+    id: other-information
+    attributes:
+      label: Other information
+      description: Any other information, ignored by the QW tool
