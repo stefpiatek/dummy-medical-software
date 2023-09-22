@@ -18,7 +18,7 @@ body:
     id: design-inputs
     attributes:
       label: Design inputs
-      description: If design inputs already exist, enter them here in the form "#3 #4"
+      description: If design inputs already exist, enter them here in the form `#3 #4`
       placeholder: "#3 #4"
   - type: textarea
     id: other-information
