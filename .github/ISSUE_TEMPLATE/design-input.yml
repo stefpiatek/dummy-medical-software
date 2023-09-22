@@ -15,6 +15,14 @@ body:
     validations:
       required: true
   - type: textarea
+    id: user-need
+    attributes:
+      label: Parent user need
+      description: Enter the User need github issue number that the design input contributes to, in the form `#1`
+      placeholder: "#1"
+    validations:
+      required: true
+  - type: textarea
     id: other-information
     attributes:
       label: Other information
