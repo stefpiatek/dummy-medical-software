@@ -1,8 +1,0 @@
-name: Non QW item
-description: Anything that doesn't affect the medical device
-labels: ["qw-ignore"]
-body:
-  - type: markdown
-    attributes:
-      value: |
-        Non-QQ item
