@@ -14,6 +14,27 @@ body:
       placeholder: Specific requirement information
     validations:
       required: true
+  - type: dropdown
+    id: requirement-type
+    attributes:
+      label: Type of requirement
+      description: What is classification of the requirement?
+      options:
+        - Functional
+        - System inputs and outputs
+        - Application programming interface
+        - Alarms and warnings
+        - Security
+        - User interface
+        - Data definition and database
+        - Installation and acceptance
+        - Operation methods and maintenance
+        - Networking
+        - User maintenance
+        - Regulatory
+      default: 0
+    validations:
+      required: true
   - type: textarea
     id: user-need
     attributes:
