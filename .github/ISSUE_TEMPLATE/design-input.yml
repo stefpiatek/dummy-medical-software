@@ -21,7 +21,7 @@ body:
       description: Which component does this relate to?
       options:
         - System
-        - Dosage calculation
+        - Drug dosage
         - Planning
     validations:
       required: true
