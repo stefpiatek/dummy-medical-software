@@ -15,6 +15,17 @@ body:
     validations:
       required: true
   - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      description: Which component does this relate to?
+      options:
+        - System
+        - Dosage calculation
+        - Planning
+    validations:
+      required: true
+  - type: dropdown
     id: requirement-type
     attributes:
       label: Type of requirement
@@ -32,7 +43,6 @@ body:
         - Networking
         - User maintenance
         - Regulatory
-      default: 0
     validations:
       required: true
   - type: textarea
