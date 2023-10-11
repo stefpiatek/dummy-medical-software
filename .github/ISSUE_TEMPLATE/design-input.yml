@@ -45,6 +45,20 @@ body:
         - Regulatory
     validations:
       required: true
+  - type: dropdown
+    id: verification-requirement
+    attributes:
+      label: Verification required
+      description: What is verification strategy is required
+      options:
+        - System test
+        - Inspection
+        - Feedback
+        - Statement
+        - Installation
+        - None (optional requirement)
+    validations:
+      required: true
   - type: textarea
     id: user-need
     attributes:
@@ -58,3 +72,4 @@ body:
     attributes:
       label: Other information
       description: Any other information, ignored by the QW tool
+
