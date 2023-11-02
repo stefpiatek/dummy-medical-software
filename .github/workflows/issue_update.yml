@@ -1,0 +1,40 @@
+name: Issue check
+
+on:
+  issues:
+    types:
+      - edited
+      - closed
+      - reopened
+
+jobs:
+  qw_check:
+    outputs:
+      issues: ${{ steps.qw-check.output.issues }}
+      comment: ${{ steps.qw-check.output.comment }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: pip install git+https://github.com/UCL-ARC/qw.git#egg=qw
+      - name: qw check
+        id: qw-check
+        run: |
+          echo "issues=- First issue details\n- Second Issue details\n- Third issue" >> $GITHUB_OUTPUT
+          echo "comment=true" >> $GITHUB_OUTPUT
+  comment:
+    runs-on: ubuntu-latest
+    needs: qw_check
+    if: needs.qw_check.outputs.comment == 'true'
+    steps:
+      - name: Comment
+        uses: peter-evans/create-or-update-comment@v3.1.0
+        if: ${{ github.event_name != 'pull_request' }}
+        env:
+          ISSUES: ${{ needs.qw_check.outputs.issues }}
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: $ISSUES
