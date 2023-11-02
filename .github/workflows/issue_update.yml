@@ -9,6 +9,7 @@ on:
 
 jobs:
   qw_check:
+    if: ${{ github.event_name != 'pull_request' }}
     outputs:
       issues: ${{ steps.qw-check.output.issues }}
       comment: ${{ steps.qw-check.output.comment }}
@@ -38,7 +39,6 @@ jobs:
     steps:
       - name: Comment
         uses: peter-evans/create-or-update-comment@v3.1.0
-        if: ${{ github.event_name != 'pull_request' }}
         env:
           ISSUES: ${{ needs.qw_check.outputs.issues }}
         with:
