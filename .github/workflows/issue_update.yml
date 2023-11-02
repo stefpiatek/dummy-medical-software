@@ -48,9 +48,9 @@ jobs:
           echo "$GITHUB_CONTEXT"
       - name: dump outputs
         run: |
-          echo "${{ needs.qw_check.outputs.issues }}"
+          echo "${{ needs.qw_check.outputs.comment }}"
       - name: Comment
         uses: peter-evans/create-or-update-comment@v3.1.0
         with:
           issue-number: ${{ github.event.issue.number }}
-          body: "${{ needs.qw_check.outputs.issues }}"
+          body: ${{ needs.qw_check.outputs.issues }}
