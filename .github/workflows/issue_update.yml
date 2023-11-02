@@ -30,7 +30,7 @@ jobs:
         run: |
           echo "issues=- First issue details\n- Second Issue details\n- Third issue" >> $GITHUB_OUTPUT
           echo "comment=true" >> $GITHUB_OUTPUT
-          echo $GITHUB_OUTPUT
+          echo "$GITHUB_OUTPUT"
   comment:
     runs-on: ubuntu-latest
     needs: qw_check
