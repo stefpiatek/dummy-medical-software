@@ -46,6 +46,9 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
           echo "$GITHUB_CONTEXT"
+      - name: dump outputs
+        run: |
+          echo "${{ needs.qw_check.outputs.issues }}"
       - name: Comment
         uses: peter-evans/create-or-update-comment@v3.1.0
         with:
