@@ -7,6 +7,7 @@ on:
       - closed
       - reopened
 
+# Allow GITHUB_TOKEN to write to issues
 permissions:
   issues: write
 
@@ -47,8 +48,7 @@ jobs:
           echo "$GITHUB_CONTEXT"
       - name: Comment
         uses: peter-evans/create-or-update-comment@v3.1.0
-        env:
-          ISSUES: ${{ needs.qw_check.outputs.issues }}
         with:
           issue-number: ${{ github.event.issue.number }}
-          body: $ISSUES
+          body: |
+            ${{ needs.qw_check.outputs.issues }}
