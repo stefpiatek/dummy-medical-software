@@ -66,6 +66,13 @@ jobs:
       - name: dump issue file
         run: |
           cat qw/issues.md
+      - name: Render template
+        id: template
+        uses: chuhlomin/render-template@v1.8
+        with:
+          template: qw/issues.md
+          vars: |
+            user: ${{ github.actor }}
       - name: Comment
         uses: peter-evans/create-or-update-comment@v3.1.0
         with:
