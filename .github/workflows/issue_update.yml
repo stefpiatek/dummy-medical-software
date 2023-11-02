@@ -37,6 +37,11 @@ jobs:
     needs: qw_check
     if: ${{ needs.qw_check.outputs.comment }} == 'true'
     steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: |
+          echo "$GITHUB_CONTEXT"
       - name: Comment
         uses: peter-evans/create-or-update-comment@v3.1.0
         env:
