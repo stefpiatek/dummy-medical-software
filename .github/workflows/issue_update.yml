@@ -58,6 +58,9 @@ jobs:
         with:
           name: issues
           path: issues.md
+      - name: dump issue file
+        run: |
+          cat issues.md
       - name: Comment
         uses: peter-evans/create-or-update-comment@v3.1.0
         with:
