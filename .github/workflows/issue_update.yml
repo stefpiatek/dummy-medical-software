@@ -38,9 +38,9 @@ jobs:
           mkdir qw &&
           echo "## Problems found from last edit by {{ .user }}" > qw/issues.md
           echo "" >> qw/issues.md
-          echo "- First issue details" >> qw/issues.md
-          echo "- Second Issue details" >> qw/issues.md
-          echo "- Third issue" >> qw/issues.md
+          echo "- [ ] First issue details" >> qw/issues.md
+          echo "- [ ] Second Issue details" >> qw/issues.md
+          echo "- [ ] Third issue" >> qw/issues.md
       - uses: actions/upload-artifact@master
         with:
           name: qw
