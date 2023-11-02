@@ -34,7 +34,7 @@ jobs:
         # always set to true so it runs
         id: qw-check
         run: |
-          echo "comment=true" >> "$GITHUB_OUTPUT"
+          echo "comment=true" >> "$GITHUB_OUTPUT" &&
           echo "- First issue details\n- Second Issue details\n- Third issue" > issues.md
       - uses: actions/upload-artifact@master
         with:
