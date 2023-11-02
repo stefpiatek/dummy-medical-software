@@ -57,12 +57,12 @@ jobs:
       - uses: actions/download-artifact@master
         with:
           name: issues
-          path: issues.md
+          path: qw/issues.md
       - name: dump issue file
         run: |
-          cat issues.md
+          cat qw/issues.md
       - name: Comment
         uses: peter-evans/create-or-update-comment@v3.1.0
         with:
           issue-number: ${{ github.event.issue.number }}
-          body-path: issues.md
+          body-path: qw/issues.md
