@@ -47,5 +47,5 @@ jobs:
         env:
           ISSUES: ${{ needs.qw_check.outputs.issues }}
         with:
-          issue-number: ${{ github.event.number }}
+          issue-number: ${{ github.event.issue.number }}
           body: $ISSUES
