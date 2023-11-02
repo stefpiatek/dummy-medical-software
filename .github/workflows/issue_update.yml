@@ -7,6 +7,9 @@ on:
       - closed
       - reopened
 
+permissions:
+  issues: write
+
 jobs:
   qw_check:
     if: ${{ github.event_name != 'pull_request' }}
