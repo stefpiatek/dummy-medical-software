@@ -73,8 +73,22 @@ jobs:
           template: qw/issues.md
           vars: |
             user: ${{ github.actor }}
-      - name: Comment
+      - name: Find Comment
+        uses: peter-evans/find-comment@v2
+        id: fc
+        with:
+          issue-number:  ${{ github.event.issue.number }}
+          comment-author: "github-actions[bot]"
+          body-includes: "## Problems found from last edit"
+      - name: Create Comment
+        if: steps.fc.outputs.comment-id == ''
         uses: peter-evans/create-or-update-comment@v3.1.0
         with:
           issue-number: ${{ github.event.issue.number }}
+          body: ${{ steps.template.outputs.result }}
+      - name: Update Comment
+        if: steps.fc.outputs.comment-id != ''
+        uses: peter-evans/create-or-update-comment@v3.1.0
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
           body: ${{ steps.template.outputs.result }}
