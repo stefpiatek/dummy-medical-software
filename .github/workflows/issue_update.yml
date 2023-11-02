@@ -14,13 +14,17 @@ jobs:
       comment: ${{ steps.qw-check.output.comment }}
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout qw
+        uses: actions/checkout@v2
+        with:
+          repository: UCL-ARC/qw
       - name: Set up python
         uses: actions/setup-python@v4
         with:
           python-version: "3.11"
           cache: 'pip'
       - name: Install dependencies
-        run: pip install git+https://github.com/UCL-ARC/qw.git#egg=qw
+        run: pip install .
       - name: qw check
         id: qw-check
         run: |
