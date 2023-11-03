@@ -53,6 +53,9 @@ jobs:
           issue-number:  ${{ github.event.issue.number }}
           comment-author: "github-actions[bot]"
           body-includes: "## Problems found from last edit"
+      - name: Dump GitHub output
+        run: |
+          echo "$GITHUB_OUTPUT"
 
   comment-problems:
     runs-on: ubuntu-latest
@@ -63,7 +66,7 @@ jobs:
         env:
           GITHUB_NEEDS: ${{ toJson(needs) }}
         run: |
-          echo "GITHUB_NEEDS"
+          echo "$GITHUB_NEEDS"
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
