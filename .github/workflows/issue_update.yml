@@ -59,6 +59,11 @@ jobs:
     needs: qw_check
     if: ${{ needs.qw_check.outputs.comment }} == 'true'
     steps:
+      - name: Dump GitHub needs
+        env:
+          GITHUB_NEEDS: ${{ toJson(needs) }}
+        run: |
+          echo "GITHUB_NEEDS"
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
