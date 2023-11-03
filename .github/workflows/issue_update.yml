@@ -16,7 +16,6 @@ jobs:
     if: ${{ github.event_name != 'pull_request' }}
     outputs:
       issues: ${{ steps.qw-check.output.issues }}
-      comment: ${{ steps.qw-check.output.comment }}
       comment-id: ${{ steps.fc.output.comment-id }}
     runs-on: ubuntu-latest
     steps:
@@ -35,7 +34,7 @@ jobs:
         # always set to true so it runs
         id: qw-check
         run: |
-          echo "comment=true" >> "$GITHUB_OUTPUT" &&
+          echo "issues=true" >> "$GITHUB_OUTPUT" &&
           mkdir qw &&
           echo '## Problems found from last edit by {{ .user }} on {{ .date | date "2006-01-02"}}' > qw/issues.md
           echo "" >> qw/issues.md
@@ -60,7 +59,7 @@ jobs:
   comment-problems:
     runs-on: ubuntu-latest
     needs: qw-check
-    if: ${{ needs.qw-check.outputs.comment }} == 'true'
+    if: ${{ needs.qw-check.outputs.issues}} == 'true'
     steps:
       - name: Dump GitHub needs
         env:
@@ -74,7 +73,7 @@ jobs:
           echo "$GITHUB_CONTEXT"
       - name: dump outputs
         run: |
-          echo "${{ needs.qw-check.outputs.comment }}"
+          echo "${{ needs.qw-check.outputs.issues}}"
       - uses: actions/download-artifact@master
         with:
           name: qw
@@ -100,14 +99,14 @@ jobs:
         if: needs.qw-check.outputs.comment-id != ''
         uses: peter-evans/create-or-update-comment@v3.1.0
         with:
-          comment-id: ${{ steps.fc.outputs.comment-id }}
+          comment-id: ${{ needs.qw-check.outputs.comment-id }}
           body: ${{ steps.template.outputs.result }}
           edit-mode: replace
 
   comment-fixed:
     runs-on: ubuntu-latest
     needs: qw-check
-    if: ${{ needs.qw-check.outputs.comment }} != 'true' && needs.qw-check.outputs.comment-id != ''
+    if: ${{ needs.qw-check.outputs.issues}} != 'true' && needs.qw-check.outputs.comment-id != ''
     steps:
       - name: Create resolved issues markdown file
         run: |
@@ -125,6 +124,6 @@ jobs:
         if: needs.qw-check.outputs.comment-id != ''
         uses: peter-evans/create-or-update-comment@v3.1.0
         with:
-          comment-id: ${{ steps.fc.outputs.comment-id }}
+          comment-id: ${{ needs.qw-check.outputs.comment-id }}
           body: ${{ steps.template.outputs.result }}
           edit-mode: replace
