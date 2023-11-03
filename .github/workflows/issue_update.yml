@@ -54,7 +54,7 @@ jobs:
           body-includes: "## Problems found from last edit"
       - name: Dump GitHub output
         run: |
-          echo "$GITHUB_OUTPUT"
+          echo "github outputs: $GITHUB_OUTPUT"
 
   comment-problems:
     runs-on: ubuntu-latest
