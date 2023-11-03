@@ -88,7 +88,7 @@ jobs:
           template: qw/issues.md
           vars: |
             user: ${{ github.actor }}
-            date: ${{ github.event.issue.update_at }}
+            date: ${{ github.event.issue.updated_at }}
       - name: Create Comment
         if: needs.qw-check.outputs.comment-id == ''
         uses: peter-evans/create-or-update-comment@v3.1.0
@@ -119,7 +119,7 @@ jobs:
           template: qw/issues.md
           vars: |
             user: ${{ github.actor }}
-            date: ${{ github.event.issue.update_at }}
+            date: ${{ github.event.issue.updated_at }}
       - name: Update Comment
         if: needs.qw-check.outputs.comment-id != ''
         uses: peter-evans/create-or-update-comment@v3.1.0
