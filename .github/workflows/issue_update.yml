@@ -15,7 +15,7 @@ jobs:
   qw-check:
     if: ${{ github.event_name != 'pull_request' }}
     outputs:
-      issues: ${{ steps.qw-check.output.issues }}
+      issues: ${{ steps.qw.output.issues }}
       comment-id: ${{ steps.fc.output.comment-id }}
     runs-on: ubuntu-latest
     steps:
@@ -32,7 +32,7 @@ jobs:
         run: pip install .
       - name: qw check
         # always set to true so it runs
-        id: qw-check
+        id: qw
         run: |
           echo "issues=true" >> "$GITHUB_OUTPUT" &&
           mkdir qw &&
