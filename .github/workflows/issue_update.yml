@@ -13,11 +13,15 @@ permissions:
 
 jobs:
   qw-check:
+    runs-on: ubuntu-latest
     if: ${{ github.event_name != 'pull_request' }}
     outputs:
-      issues: ${{ steps.qw.output.issues }}
-      comment-id: ${{ steps.fc.output.comment-id }}
-    runs-on: ubuntu-latest
+      issues:
+        description: "Were there any issues found?"
+        value: ${{ steps.qw.output.issues }}
+      comment-id:
+        description: "ID of a previous comment with issues found, so that it can be updated."
+        value: ${{ steps.fc.output.comment-id }}
     steps:
       - name: Checkout qw
         uses: actions/checkout@v2
