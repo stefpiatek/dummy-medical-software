@@ -16,8 +16,10 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event_name != 'pull_request' }}
     outputs:
+      # problems found in parsing the issue metadata (currently hardcoded to true)
       issues: ${{ steps.qw.output.issues }}
-#      comment-id: ${{ steps.fc.output.comment-id }}
+      # existing comment on the pull request
+      comment-id: ${{ steps.fc.output.comment-id }}
     steps:
       - name: Checkout qw
         uses: actions/checkout@v2
@@ -47,6 +49,7 @@ jobs:
           name: qw
           path: qw
       - name: Find Comment
+        # has output "comment-id"
         uses: peter-evans/find-comment@v2
         id: fc
         with:
