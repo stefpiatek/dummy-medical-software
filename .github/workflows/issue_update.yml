@@ -17,9 +17,9 @@ jobs:
     if: ${{ github.event_name != 'pull_request' }}
     outputs:
       # problems found in parsing the issue metadata (currently hardcoded to true)
-      issues: ${{ steps.qw.output.issues }}
+      issues: ${{ steps.qw.outputs.issues }}
       # existing comment on the pull request
-      comment-id: ${{ steps.fc.output.comment-id }}
+      comment-id: ${{ steps.fc.outputs.comment-id }}
     steps:
       - name: Checkout qw
         uses: actions/checkout@v2
