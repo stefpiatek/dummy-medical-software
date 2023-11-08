@@ -1,6 +1,6 @@
 name: User need
 description: Create a new user need
-labels: ["qw-user-need", "qw-v1"]
+labels: ["qw-user-need"]
 body:
   - type: markdown
     attributes:
@@ -18,7 +18,7 @@ body:
     id: design-inputs
     attributes:
       label: Design inputs
-      description: If design inputs already exist, enter the github issue number(s) in the form `#3`
+      description: If design inputs already exist, enter the github issue number(s) in the form `#3` or `#3 #4`
       placeholder: "#3 #4"
   - type: textarea
     id: other-information

@@ -1,6 +1,6 @@
 name: Design input
 description: Create a new design input
-labels: ["qw-design-input", "qw-v1"]
+labels: ["qw-design-input"]
 body:
   - type: markdown
     attributes:
@@ -21,8 +21,6 @@ body:
       description: Which component does this relate to?
       options:
         - System
-        - Drug dosage
-        - Planning
     validations:
       required: true
   - type: dropdown
