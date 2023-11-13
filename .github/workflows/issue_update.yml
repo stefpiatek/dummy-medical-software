@@ -44,7 +44,7 @@ jobs:
           touch empty.md &&
           mkdir qw &&
           cat issue-header.md issues.md > qw/issues.md &&
-          echo [-s empty.md] && echo "issues=true" >> "$GITHUB_OUTPUT" || echo "issues=" >> "$GITHUB_OUTPUT"
+          if [-s empty.md] && echo "issues=true" >> "$GITHUB_OUTPUT" || echo "issues=" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-artifact@master
         with:
           name: qw
