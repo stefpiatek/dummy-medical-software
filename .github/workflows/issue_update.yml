@@ -112,6 +112,11 @@ jobs:
     needs: qw-check
     if: ${{ needs.qw-check.outputs.issues}} != 'true' && needs.qw-check.outputs.comment-id != ''
     steps:
+      - name: Dump GitHub needs
+        env:
+          GITHUB_NEEDS: ${{ toJson(needs) }}
+        run: |
+          echo "$GITHUB_NEEDS"
       - name: Create resolved issues markdown file
         run: |
           mkdir qw &&
