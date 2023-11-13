@@ -63,7 +63,7 @@ jobs:
   comment-problems:
     runs-on: ubuntu-latest
     needs: qw-check
-    if: ${{ needs.qw-check.outputs.issues}} == 'true'
+    if: ${{ needs.qw-check.outputs.issues}} != ''
     steps:
       - name: Dump GitHub needs
         env:
@@ -110,7 +110,7 @@ jobs:
   comment-fixed:
     runs-on: ubuntu-latest
     needs: qw-check
-    if: ${{ needs.qw-check.outputs.issues}} != 'true' && needs.qw-check.outputs.comment-id != ''
+    if: ${{ needs.qw-check.outputs.issues}} == '' && needs.qw-check.outputs.comment-id != ''
     steps:
       - name: Dump GitHub needs
         env:
