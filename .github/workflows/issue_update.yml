@@ -36,7 +36,7 @@ jobs:
         # always set to true so it runs
         id: qw
         run: |
-          echo '## Problems found from last edit by {{ .user }} on {{ .date | date "2006-01-02"}}' > qw/issues.md &&
+          echo '## Problems found from last edit by {{ .user }} on {{ .date | date "2006-01-02"}}' > issue-header.md &&
           echo "" >> issue-header.md  &&
           echo "- [ ] First issue details" >> issues.md  &&
           echo "- [ ] Second Issue details" >> issues.md  &&
