@@ -36,14 +36,14 @@ jobs:
         # always set to true so it runs
         id: qw
         run: |
-          echo 'issues=## Problems found from last edit by {{ .user }} on {{ .date | date "2006-01-02"}}\r\n\r\n- [ ] single issue' >> "$GITHUB_OUTPUT" &&
-          mkdir qw &&
           echo '## Problems found from last edit by {{ .user }} on {{ .date | date "2006-01-02"}}' > qw/issues.md &&
-          echo "" >> qw/issues.md  &&
-          echo "- [ ] First issue details" >> qw/issues.md  &&
-          echo "- [ ] Second Issue details" >> qw/issues.md  &&
-          echo "- [ ] Third issue" >> qw/issues.md  &&
-          cat $GITHUB_OUTPUT
+          echo "" >> issue-header.md  &&
+          echo "- [ ] First issue details" >> issues.md  &&
+          echo "- [ ] Second Issue details" >> issues.md  &&
+          echo "- [ ] Third issue" >> issues.md  &&
+          mkdir qw &&
+          cat issue-header.md issues.md > qw/issues.md
+          echo [-s issues.md] && 'issues=true' >> "$GITHUB_OUTPUT"
       - uses: actions/upload-artifact@master
         with:
           name: qw
@@ -104,7 +104,7 @@ jobs:
         uses: peter-evans/create-or-update-comment@v3.1.0
         with:
           comment-id: ${{ needs.qw-check.outputs.comment-id }}
-          body: ${{ needs.qw-check.outputs.issues }}
+          body: ${{ steps.template.outputs.result }}
           edit-mode: replace
 
   comment-fixed:
