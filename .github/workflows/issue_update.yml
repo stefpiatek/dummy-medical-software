@@ -41,9 +41,10 @@ jobs:
           echo "- [ ] First issue details" >> issues.md  &&
           echo "- [ ] Second Issue details" >> issues.md  &&
           echo "- [ ] Third issue" >> issues.md  &&
+          touch empty.md &&
           mkdir qw &&
           cat issue-header.md issues.md > qw/issues.md &&
-          echo [-s issues.md] && echo "issues=true" >> "$GITHUB_OUTPUT"
+          echo [-s empty.md] && echo "issues=true" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-artifact@master
         with:
           name: qw
