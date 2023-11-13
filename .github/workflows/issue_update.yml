@@ -36,7 +36,7 @@ jobs:
         # always set to true so it runs
         id: qw
         run: |
-          echo "issues=" >> "$GITHUB_OUTPUT" &&
+          echo 'issues=## Problems found from last edit by {{ .user }} on {{ .date | date "2006-01-02"}}\r\n\r\n- [ ] single issue' >> "$GITHUB_OUTPUT" &&
           mkdir qw &&
           echo '## Problems found from last edit by {{ .user }} on {{ .date | date "2006-01-02"}}' > qw/issues.md &&
           echo "" >> qw/issues.md  &&
@@ -104,7 +104,7 @@ jobs:
         uses: peter-evans/create-or-update-comment@v3.1.0
         with:
           comment-id: ${{ needs.qw-check.outputs.comment-id }}
-          body: ${{ steps.template.outputs.result }}
+          body: ${{ needs.qw-check.outputs.issues }}
           edit-mode: replace
 
   comment-fixed:
