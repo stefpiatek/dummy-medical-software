@@ -14,7 +14,7 @@ permissions:
 jobs:
   qw-check:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name != 'pull_request' }} && ${{ !contains(github.event.issue.labels.*.name, 'qw-issue') }}
+    if: ${{ github.event_name != 'pull_request' }} && ${{ !contains(github.event.issue.labels.*.name, 'qw-ignore') }}
     outputs:
       # problems found in parsing the issue metadata (currently hardcoded to true)
       issues: ${{ steps.qw.outputs.issues }}
