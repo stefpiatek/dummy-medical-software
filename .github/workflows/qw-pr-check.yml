@@ -1,4 +1,4 @@
-name: QW PR Check
+name: QW Check PR
 # Checks to see if a PR can be parsed by qw, and any outstanding problems with it.
 # If problems are found, the action will fail and give an error message of the problems found
 
@@ -9,7 +9,7 @@ on:
 
 
 jobs:
-  qw-check:
+  qw-check-pr:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'qw-ignore') }}
     steps:
