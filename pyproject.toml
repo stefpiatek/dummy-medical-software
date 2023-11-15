@@ -1,0 +1,63 @@
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = [
+    "setuptools",
+    "setuptools-scm",
+]
+
+[project]
+classifiers = [
+    "Operating System :: POSIX",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
+    "Typing :: Typed",
+]
+dependencies = [
+]
+description = "Dummy tool"
+dynamic = [
+    "version",
+]
+keywords = [
+]
+name = "dummy"
+optional-dependencies = {dev = [
+    "pytest",
+    "tox",
+]}
+readme = "README.md"
+requires-python = ">=3.11"
+license.file = "LICENCE"
+
+[tool.coverage]
+report = {skip_covered = true, sort = "cover"}
+run = {branch = true, parallel = true, source = [
+    "dummy",
+]}
+paths.source = [
+    "src",
+    ".tox*/*/lib/python*/site-packages",
+]
+
+[tool.setuptools_scm]
+local_scheme = "no-local-version"
+write_to = "src/_version.py"
+
+[tool.tox]
+legacy_tox_ini = """
+    [gh-actions]
+    python =
+        3.11: py311
+
+    [testenv]
+    commands =
+        pytest --cov --cov-report=xml
+    deps =
+        pytest
+        pytest-cov
+
+    [tox]
+    env_list =
+        py311
+"""
