@@ -11,7 +11,7 @@ on:
 jobs:
   qw-check-pr:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'qw-ignore') }}
+    if: ${{ github.event_name == 'pull_request' }}
     steps:
       - name: Checkout qw
         uses: actions/checkout@v3
@@ -26,5 +26,10 @@ jobs:
         run: pip install .
       - name: qw check
         id: qw
+        if : ${{ !contains(github.event.pull_request.labels.*.name, 'qw-ignore') }}
         run: |
           qw check --issue ${{ github.event.issue.number }}  --repository ${{ github.repository }}
+      - name: skip qw check
+        id: skip
+        if : ${{ contains(github.event.pull_request.labels.*.name, 'qw-ignore') }}
+        run: echo "Ignored by qw"
