@@ -27,4 +27,4 @@ jobs:
       - name: qw check
         id: qw
         run: |
-          qw check --issue ${{ github.event.issue.number }}  --repository ${{ github.repository }} > problems.md &&
+          qw check --issue ${{ github.event.issue.number }}  --repository ${{ github.repository }}
